@@ -90,6 +90,81 @@ namespace BirthdayTrack
             }
         }
 
-  
+  public bool HadThisYearsBirthday()
+        {
+            // get todays date
+            DateTime today = DateTime.Today;
+
+            // we assume you have not had this years birthday yet
+            bool returnValue = false;
+
+            // but if this month is AFTER you birthay month you have
+            if (today.Month > MonthBorn)
+            {
+                returnValue = true;
+            }
+            // if this is your birthday month we look at the days            
+            else if (today.Month == MonthBorn)
+            {
+                // if today is on or after your birthday then you have
+                if (today.Day >= DayBorn)
+                {
+                    returnValue = true;
+                }
+
+            }
+            return returnValue;
+        }
+
+        public DateTime GetNextBirthday()
+        {
+            // we calculate the date for your next birthday
+            DateTime today = DateTime.Today;
+            // assume your birthday is this year
+            int birthdayYear = today.Year;
+            // if you've already had your birthday then
+            // its a year later
+            if (HadThisYearsBirthday())
+            {
+                birthdayYear++;
+            }
+            // now we create the right dateTime
+            DateTime nextBirthday =
+                new DateTime(birthdayYear, MonthBorn, DayBorn);
+            return nextBirthday;
+        }
+
+        public int HowManyDaysTillBirthday()
+        {
+            // we work out the difference between your next birthday
+            // and todays date
+
+            DateTime nextBirthday = GetNextBirthday();
+            DateTime today = DateTime.Today;
+
+            TimeSpan difference =
+                nextBirthday.Subtract(today);
+
+            // from the timespan object we are only interested in the
+            // number of days
+            int daysToBirthday = difference.Days;
+
+            return daysToBirthday;
+        }
+
+        public int GetAgeInYears()
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - YearBorn;
+
+            // but if you haven't had this years birthday
+            // you are 1 year younger
+
+            if (!HadThisYearsBirthday())
+            {
+                age--;
+            }
+            return age;
+        }
     }
 }
