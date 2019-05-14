@@ -8,11 +8,12 @@ namespace BirthdayTrack
 {// birthdays class to hold information about people
  public class Birthdays
     {
-        //declare and reference a member person
-        int currenPerson = 0;
-
+        
         //this is object people to hold list of people
         List<Person> people = new List<Person>();
+
+        //declare and reference a member person
+        int currenPerson = 0;
 
         //access a person data
         public string GetPersonFirstName()
@@ -32,14 +33,24 @@ namespace BirthdayTrack
             return people[currenPerson].DateOfBirth();
         }
 
+        public int GetPersonDaysTillNextBirthday()
+        {
+            return people[currenPerson].HowManyDaysTillBirthday();
+        }
+
+        public int GetPersonAgeInYears()
+        {
+            return people[currenPerson].GetAgeInYears();
+        }
+
         public bool IsNextPerson()
         {
-            return currenPerson < people.Count -1;
+            return (currenPerson < (people.Count -1));
         }
 
         public bool IsPreviousPerson()
         {
-            return currenPerson > 0;
+            return (currenPerson > 0);
         }
 
         public void StepToNextPerson()
@@ -55,7 +66,7 @@ namespace BirthdayTrack
         {
             if (IsPreviousPerson())
             {
-                currenPerson++;
+                currenPerson--;
             }
         }
 
