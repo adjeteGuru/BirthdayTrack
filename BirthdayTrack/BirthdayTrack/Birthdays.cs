@@ -31,5 +31,47 @@ namespace BirthdayTrack
         {
             return people[currenPerson].DateOfBirth();
         }
+
+        public bool IsNextPerson()
+        {
+            return currenPerson < people.Count -1;
+        }
+
+        public bool IsPreviousPerson()
+        {
+            return currenPerson > 0;
+        }
+
+        public void StepToNextPerson()
+        {
+            if (IsNextPerson())
+            {
+                currenPerson++;
+            }
+
+        }
+
+        public void StepToPreviousPerson()
+        {
+            if (IsPreviousPerson())
+            {
+                currenPerson++;
+            }
+        }
+
+        public void AddPerson(string fristName, string lastName, int dayBorn, int monthBorn, int yearBorn)
+        {// create a new person object
+            Person person = new Person();
+
+            // copy in the details
+            person.FirstName = fristName;
+            person.LastName = lastName;
+            person.DayBorn = dayBorn;
+            person.MonthBorn = monthBorn;
+            person.YearBorn = yearBorn;
+
+            // add to the list of people
+            people.Add(person);
+        }
     }
 }
